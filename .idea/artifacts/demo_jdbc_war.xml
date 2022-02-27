@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="demo_jdbc:war">
+    <output-path>$PROJECT_DIR$/demo_jdbc/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>demo_jdbc</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="demo_jdbc-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="demo_jdbc:war exploded" />
+    </root>
+  </artifact>
+</component>

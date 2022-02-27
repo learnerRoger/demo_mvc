@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+               http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <context:component-scan base-package="com.example.controller"></context:component-scan>
+    <bean id="viewResovler" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <bean  id="conversionServiceFactoryBean" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.example.convert.DataConvert"></bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="maxUploadSize" value="5000000"></property>
+     </bean>
+<!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
+<!--        <property name="messageConverters">-->
+<!--            <list>-->
+<!--                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
+    <mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
+
+    <!--开放资源访问权限-->
+<!--    <mvc:resources mapping="/js/**" location="/js/"/>-->
+<!--    <mvc:resources mapping="/jsp/**" location="/jsp/"/>-->
+<!--    <mvc:resources mapping="/img/**" location="/img/"/>-->
+
+    <mvc:default-servlet-handler/>
+
+    <!--配置文件上传解析器-->
+
+</beans>
